@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Paquete_cartas {
+	
+	//TODO hacer esto por colecciones.
 
 	private Carta[] cartas;
 
