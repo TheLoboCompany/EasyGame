@@ -3,8 +3,6 @@
 // ----------------- //
 // ///////////////// //
 
-numero_cartas:12
-
 nombre:Ametralladora ligera
 descripcion:Pasiva: Gasta hasta 3 balas situadas en el arma. En tu siguiente ataque, lanza un dado extra por cada bala gastada. Pasiva: No puedes usar una acción de recarga hacia este arma. 2 Acciones: Recarga la munición de este arma desde tu inventario.
 destreza:1
