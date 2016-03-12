@@ -5,19 +5,19 @@ import java.util.Properties;
 
 public class Propiedades extends Properties {
 	
-	public Propiedades(String idiomaATraducir){
+	public Propiedades(String idioma){
 		
-		if (idiomaATraducir.equals("ESPANNOL")){
-			getProperties("Espannol.propiedades");
-		}else if (idiomaATraducir.equals("INGLES")){
-			getProperties("Ingles.propiedades");
+		if (idioma.equals("ESPANNOL")){
+			getProperties("Espannol.properties");
+		}else if (idioma.equals("INGLES")){
+			getProperties("Ingles.properties");
 		}else{
-			getProperties("Espannol.propiedades");
+			getProperties("Espannol.properties");
 		}
 		
 	}
 
-	public void getProperties(String idioma) {
+	private void getProperties(String idioma) {
 
 		try {
 			this.load(getClass().getResourceAsStream(idioma));

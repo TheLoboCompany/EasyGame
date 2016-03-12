@@ -1,0 +1,100 @@
+// ///////////////// //
+// Introducir cartas //
+// ----------------- //
+// ///////////////// //
+
+nombre:Ametralladora ligera
+descripcion:Pasiva: Gasta hasta 3 balas situadas en el arma. En tu siguiente ataque, lanza un dado extra por cada bala gastada. Pasiva: No puedes usar una acción de recarga hacia este arma. 2 Acciones: Recarga la munición de este arma desde tu inventario.
+destreza:1
+cadencia:1
+alcance:5
+balas:12
+cartuchos:0
+
+nombre:Pistola
+descripcion:
+destreza:1
+cadencia:1
+alcance:4
+balas:4
+cartuchos:0
+
+nombre:Subfusil
+descripcion:
+destreza:1
+cadencia:2
+alcance:4
+balas:4
+cartuchos:0
+
+nombre:Fusil de asalto
+descripcion:Acción: Lanza 2 dados extras en tu siguiente ataque con este arma.
+destreza:1
+cadencia:1
+alcance:6
+balas:5
+cartuchos:0
+
+nombre:Rifle de cerrojo
+descripcion:Pasiva: Puedes hacer objetivo de un ataque a una figura situada detras de una barricada o puerta. Si esto sucede resta 1 punto a la tirada del ataque.
+destreza:2
+cadencia:1
+alcance:6
+balas:1
+cartuchos:0
+
+nombre:Rifle con óptica
+descripcion:Pasiva: Al realizar un ataque, la figura que tu elijas ignora el fuego indirecto.
+destreza:1
+cadencia:1
+alcance:8
+balas:2
+cartuchos:0
+
+nombre:Revólver
+descripcion:Pasiva: Al realizar una acción de ataque, si el resultado real del dado es mayor a 4, puedes hacer objetivo de este mismo ataque a una figura adyacente al objetivo anterior, restando 1 al dado.
+destreza:1
+cadencia:1
+alcance:3
+balas:3
+cartuchos:0
+
+nombre:Pistola automática
+descripcion:
+destreza:0
+cadencia:4
+alcance:3
+balas:5
+cartuchos:0
+
+nombre:Pistola sin retroceso
+descripcion:Pasiva: Puedes hacer una acción de ataque gratuita despues de realizar un movimiento.
+destreza:1
+cadencia:1
+alcance:3
+balas:4
+cartuchos:0
+
+nombre:Ballesta
+descripcion:Pasiva: Al robar este arma, coloca sobre ella 2 contadores. Pasiva: No puedes hacer ataques a distancia si no gastas un contador. * : Puedes realizar un ataque a distancia gratuito. Pasiva: Al comienzo del turno, coloca un contador sobre este arma (Max 4) inscluso si está en el inventario.
+destreza:2
+cadencia:1
+alcance:3
+balas:0
+cartuchos:0
+
+nombre:Rifle de repetición
+descripcion:Pasiva: Suma el resultado real de ambos dados.
+destreza:-1
+cadencia:2
+alcance:6
+balas:2
+cartuchos:0
+
+nombre:Ametralladora pesada
+descripcion:Pasiva: Cuando estás adyacente a una barricada, ventana o puerta abierta, puedes hacer objetivo de un ataque a una figura detras de ésta (no hace falta que esté adyacente). Si esto sucede, aumenta 1 punto el resultado del ataque y lanza un dado extra. 
+destreza:0
+cadencia:1
+alcance:3
+balas:5
+cartuchos:0

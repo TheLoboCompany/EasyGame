@@ -1,6 +1,7 @@
 package Cartas;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.util.Properties;
 
 import javax.swing.BoxLayout;
@@ -14,7 +15,7 @@ import Propiedades.Propiedades;
 public class AgregarCartasApp {
 
 	private JFrame ventana;
-	private JPanel pnlIzquierda, pnlDerecha;
+	private JPanel pnlInterfaz, pnlIzquierda, pnlDerecha;
 	private JLabel txtNombre, txtDescripcion, txtFuerza, txtDestreza, txtCadencia, txtAlcance, txtBalas, txtCartuchos;
 	private JButton btnSalir, btnLimpiar, btnGuardar;
 
@@ -26,9 +27,11 @@ public class AgregarCartasApp {
 
 	}
 
-	private void inicializarInterfaz(String idioma) {
+	public void inicializarInterfaz(String idioma) {
 		
 		Properties propiedades = new Propiedades(idioma);
+		
+		// creacion de textos y sus areas(con su titulo) primera parte.
 		
 		txtNombre = new JLabel(propiedades.getProperty("Nombre"));
 		// cuadro donde se inserta el valor;
@@ -46,33 +49,44 @@ public class AgregarCartasApp {
 		// cuadro donde se inserta el valor;
 		txtCartuchos = new JLabel(propiedades.getProperty("Cartuchos"));
 		// cuadro donde se inserta el valor;
+		
+		// creacion de textos, un area para buscar una direccion de una imagen y mostrarla
+		// y a continuacion tres botones
+		
+		btnSalir = new JButton(propiedades.getProperty("Guardar"));
+		btnSalir = new JButton(propiedades.getProperty("Limpiar"));
+		btnSalir = new JButton(propiedades.getProperty("Salir"));
 
 	}
 
 	private void crearPanel() {
 		
+		pnlInterfaz = new JPanel();
+		pnlInterfaz.setLayout(new BoxLayout(pnlInterfaz, BoxLayout.Y_AXIS));
+		pnlInterfaz.setBackground(Color.blue);
+		
 		pnlIzquierda = new JPanel();
 		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
 		pnlIzquierda.setBackground(Color.red);
-		pnlIzquierda.add(txtNombre);
+		pnlInterfaz.add(pnlIzquierda);
 		
 		pnlDerecha = new JPanel();
-		pnlDerecha.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.Y_AXIS));
+		pnlDerecha.setLayout(new BoxLayout(pnlDerecha, BoxLayout.Y_AXIS));
 		pnlDerecha.setBackground(Color.green);
-		pnlIzquierda.add(txtNombre);
+		pnlInterfaz.add(pnlDerecha);
 
 	}
 
 	private void crearVentana(String nombreVentana) {
 
 		ventana = new JFrame();
-		// ventana.setUndecorated(true);
+//		 ventana.setUndecorated(true);
 		ventana.setTitle(nombreVentana + "tituloCreadorCarta");
 		ventana.setSize(400, 400);
 		ventana.setLayout(new BoxLayout(ventana.getContentPane(), BoxLayout.X_AXIS));
 		ventana.setDefaultCloseOperation(ventana.EXIT_ON_CLOSE);
 		ventana.setVisible(true);
-
+		ventana.setContentPane(pnlInterfaz);
 	}
 
 }
