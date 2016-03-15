@@ -5,6 +5,11 @@ import java.util.Properties;
 
 public class Propiedades extends Properties {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Propiedades(String idioma){
 		
 		if (idioma.equals("ESPANNOL")){
