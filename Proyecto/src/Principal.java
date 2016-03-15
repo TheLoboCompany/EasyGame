@@ -1,4 +1,4 @@
-import Cartas.AgregarCartasApp;
+import Ventanas.AgregarCartasApp;
 
 public class Principal {
 

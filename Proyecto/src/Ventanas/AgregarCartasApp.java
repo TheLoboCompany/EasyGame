@@ -1,4 +1,4 @@
-package Cartas;
+package Ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
