@@ -2,6 +2,7 @@ package Cartas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Properties;
@@ -32,7 +33,10 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 	private static final int ANCHO_CARTA = 200;
 	private static final int ALTO_CARTA = 200;
 	
-	private JPanel pnlNorte, pnlSur, pnlInterfaz, pnlIzquierda, pnlDerecha, pnlEste, pnlOeste;
+	private String tituloAtributos;
+	private String tituloImagen;
+
+	private JPanel pnlNorte, pnlSur, pnlInterfaz, pnlIzquierda, pnlDerecha, pnlEste, pnlOeste, pnlAtributos, pnlNombres;
 	private JLabel txtNombre, txtDescripcion, txtFuerza, txtDestreza, txtCadencia, txtAlcance, txtBalas, txtCartuchos, txtBuscador, imgCarta;
 	private JTextField tfNombre, tfDescripcion, tfFuerza, tfDestreza, tfCadencia, tfAlcance, tfBalas, tfCartuchos, tfBuscador;
 	private JButton btnSalir, btnLimpiar, btnGuardar, btnBuscar;
@@ -68,6 +72,7 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 		tfNombre = new JTextField(TAMANIO_CAJA);
 		txtDescripcion = new JLabel(propiedades.getProperty("Descripcion"));
 		tfDescripcion = new JTextField(TAMANIO_CAJA);
+//		para hacer una caja mas grande 
 		txtFuerza = new JLabel(propiedades.getProperty("Fuerza"));
 		tfFuerza = new JTextField(TAMANIO_CAJA);
 		txtDestreza = new JLabel(propiedades.getProperty("Destreza"));
@@ -89,6 +94,7 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 		txtBuscador = new JLabel(propiedades.getProperty("BuscarImagen"));
 		tfBuscador = new JTextField(TAMANIO_CAJA);
 		btnBuscar = new JButton(propiedades.getProperty("Buscar"));
+		btnBuscar.addActionListener(this);
 		
 		btnSalir = new JButton(propiedades.getProperty("Salir"));
 		btnSalir.addActionListener(this);
@@ -96,6 +102,9 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 		btnGuardar.addActionListener(this);
 		btnLimpiar = new JButton(propiedades.getProperty("Limpiar"));
 		btnLimpiar.addActionListener(this);
+		
+		tituloAtributos = propiedades.getProperty("TituloAtributos");
+		tituloImagen = propiedades.getProperty("TituloImagen");
 
 	}
 
@@ -103,11 +112,9 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 		
 		pnlInterfaz = new JPanel();
 		pnlInterfaz.setLayout(new BoxLayout(pnlInterfaz, BoxLayout.Y_AXIS));
-//		pnlInterfaz.setBackground(Color.blue);
 		
 		pnlNorte = new JPanel();
 		pnlNorte.setLayout(new BoxLayout(pnlNorte, BoxLayout.X_AXIS));
-		pnlNorte.setBorder(BorderFactory.createTitledBorder("Atributos de las cartas"));
 		pnlInterfaz.add(pnlNorte);
 		
 		pnlSur = new JPanel();
@@ -119,12 +126,12 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 		
 		pnlEste = new JPanel();
 		pnlEste.setLayout(new BoxLayout(pnlEste, BoxLayout.Y_AXIS));
-		pnlEste.setBorder(BorderFactory.createTitledBorder("Atributos de las cartas"));
+		pnlEste.setBorder(BorderFactory.createTitledBorder(tituloAtributos));
 		pnlNorte.add(pnlEste);
 		
 		pnlOeste = new JPanel();
 		pnlOeste.setLayout(new BoxLayout(pnlOeste, BoxLayout.Y_AXIS));
-		pnlOeste.setBorder(BorderFactory.createTitledBorder("Atributos de las cartas"));
+		pnlOeste.setBorder(BorderFactory.createTitledBorder(tituloImagen));
 		pnlNorte.add(pnlOeste);
 
 		panelIzquierdo(txtNombre, tfNombre);
@@ -157,10 +164,19 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 	}
 
 	private void panelIzquierdo(JLabel texto, JTextField caja) {
-		pnlIzquierda = new JPanel();
-		pnlIzquierda.add(texto);
-		pnlIzquierda.add(caja);
 		
+		pnlIzquierda = new JPanel();
+		pnlIzquierda.setLayout(new BoxLayout(pnlIzquierda, BoxLayout.X_AXIS));
+			
+			pnlNombres = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			pnlNombres.add(texto);
+			
+			
+			pnlAtributos = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			pnlAtributos.add(caja);
+			
+			pnlIzquierda.add(pnlNombres);
+			pnlIzquierda.add(pnlAtributos);
 		pnlEste.add(pnlIzquierda);
 	}
 
@@ -169,7 +185,7 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		setTitle(NOMBRE_JUEGO + NOMBRE_VENTANA);
-		setSize(ANCHO_VENTANA, ALTO_VENTANA);
+		setMinimumSize(new Dimension(ANCHO_VENTANA, ALTO_VENTANA));
 		setVisible(true);
 		setContentPane(pnlInterfaz);
 	}
@@ -185,6 +201,9 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 			tfBuscador.setText("");	tfDescripcion.setText("");
 			tfDestreza.setText("");	tfFuerza.setText("");
 			tfNombre.setText("");	imgCarta.setIcon(null);
+		}
+		if (e.getSource() == btnGuardar){
+			
 		}
 		
 	}
