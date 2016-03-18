@@ -3,24 +3,35 @@ package Ventanas;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Properties;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.GrayFilter;
+import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Propiedades.Propiedades;
 
 public class AgregarCartasApp extends JFrame implements ActionListener{
 
+	private static final String EXTENSION = "png";
 	/**
 	 * 
 	 */
@@ -35,7 +46,13 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 	
 	private String tituloAtributos;
 	private String tituloImagen;
+	private String errorArchivo;
+	private String extensionArchivo;
+	private String ErrorNombreVentana;
 
+	private File archivoImg;
+	private BufferedImage imagen;
+	
 	private JPanel pnlNorte, pnlSur, pnlInterfaz, pnlIzquierda, pnlDerecha, pnlEste, pnlOeste, pnlAtributos, pnlNombres;
 	private JLabel txtNombre, txtDescripcion, txtFuerza, txtDestreza, txtCadencia, txtAlcance, txtBalas, txtCartuchos, txtBuscador, imgCarta;
 	private JTextField tfNombre, tfDescripcion, tfFuerza, tfDestreza, tfCadencia, tfAlcance, tfBalas, tfCartuchos, tfBuscador;
@@ -105,6 +122,10 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 		
 		tituloAtributos = propiedades.getProperty("TituloAtributos");
 		tituloImagen = propiedades.getProperty("TituloImagen");
+		
+		errorArchivo = propiedades.getProperty("ErrorArchivo");
+		extensionArchivo = propiedades.getProperty("ExtensionArchivo");
+		ErrorNombreVentana = propiedades.getProperty("ErrorNombreVentana");
 
 	}
 
@@ -204,6 +225,36 @@ public class AgregarCartasApp extends JFrame implements ActionListener{
 		}
 		if (e.getSource() == btnGuardar){
 			
+		}
+		if (e.getSource() == btnBuscar){
+			JFileChooser elegirArchivo = new JFileChooser();
+			FileNameExtensionFilter filtroImg = new FileNameExtensionFilter(extensionArchivo, EXTENSION);
+			elegirArchivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			elegirArchivo.setFileFilter(filtroImg);
+			
+			int resultado = elegirArchivo.showOpenDialog(this);
+			
+			File archivo = elegirArchivo.getSelectedFile();
+			
+			if ((archivo == null) || (archivo.getName().equals(""))){
+				JOptionPane.showMessageDialog(this, errorArchivo, ErrorNombreVentana, JOptionPane.ERROR_MESSAGE);
+			}
+			
+			tfBuscador.setText(archivo.getAbsolutePath());
+			
+			archivoImg = new File(tfBuscador.getText());
+			
+			imagen = new BufferedImage(imgCarta.getWidth(), imgCarta.getHeight(), BufferedImage.TYPE_INT_RGB);
+			Graphics g = imagen.getGraphics();
+			imgCarta.paint(g);
+			
+			try {
+				
+				ImageIO.write(imagen, EXTENSION, archivoImg);
+				
+			} catch (IOException e2) {
+				JOptionPane.showMessageDialog(this, "ERROR!", "Imagen no válida", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		
 	}
